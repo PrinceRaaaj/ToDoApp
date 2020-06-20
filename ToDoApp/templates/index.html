@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <title>To Do App - Prince Raj</title>
+  <style>
+    .list-group .list-group-item{
+      border-radius:.75rem;
+
+    }
+  </style>
+</head>
+<body>
+{% include 'navbar.html' %}
+
+<!-- Container For Adding To Do Tasks-->
+<div class="container my-4">
+  <form action="{% url 'add_toDo' %}" method="post"> {% csrf_token %}
+    <div class="form-group">
+      <div class="row">
+        <h1 style="padding:1rem 3rem;">
+          Add Items
+        </h1>
+      </div>
+      <div class="row">
+        <div class="col-sm-9">
+          <input type="text" name="note" class="form-control mb-2" style="height:calc(0.5em + 3.75rem + -5px); padding:.375rem 1.75rem; border-radius:2rem; font-size:2rem" id="formGroupExampleInput" placeholder="Input Here...">
+        </div>
+        <div class="col-sm-3">
+          <button type="Submit" class="btn btn-success" style="padding:0.605rem 3rem; font-weight:400; font-size:2rem; border-radius:2rem">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+<!-- Displaying To Do List... -->
+  <ul class="list-group ">
+    {% for obj in obj_list %}
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-sm-6">{{obj}}</div>
+        <div class="col-sm-4">{{obj.added_date}}</div>
+        <div class="col-sm-2">
+          <a >
+            <form action="del_toDo/{{obj.id}}/" method="post">{% csrf_token %}
+              <button type="Submit" class="btn btn-warning py-1">Delete</button>
+            </form>
+          </a>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
