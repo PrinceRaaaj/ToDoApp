@@ -11,11 +11,11 @@
   <style>
     .list-group .list-group-item{
       border-radius:.75rem;
-
     }
   </style>
 </head>
 <body>
+<!-- Including Navigation Bar -->
 {% include 'navbar.html' %}
 
 <!-- Container For Adding To Do Tasks-->
@@ -32,7 +32,7 @@
           <input type="text" name="note" class="form-control mb-2" style="height:calc(0.5em + 3.75rem + -5px); padding:.375rem 1.75rem; border-radius:2rem; font-size:2rem" id="formGroupExampleInput" placeholder="Input Here...">
         </div>
         <div class="col-sm-3">
-          <button type="Submit" class="btn btn-success" style="padding:0.605rem 3rem; font-weight:400; font-size:2rem; border-radius:2rem">
+          <button type="Submit" id="btnSubmit" class="btn btn-success" style="padding:0.605rem 3rem; font-weight:400; font-size:2rem; border-radius:2rem">
             Submit
           </button>
         </div>

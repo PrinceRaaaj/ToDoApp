@@ -9,9 +9,13 @@ def toDo(request):
 def add_toDo(request):
     added_date = timezone.now()
     note = request.POST.get("note")
-    obj = ToDo(note=note, added_date=added_date)
-    obj.save()
-    return redirect("ToDo")
+    if note == "":
+        return redirect("ToDo")
+    else:
+        obj = ToDo(note=note, added_date=added_date)
+        obj.save()
+        return redirect("ToDo")
+
 
 def del_toDo(request, todo_id):
     ToDo.objects.get(id=todo_id).delete()
